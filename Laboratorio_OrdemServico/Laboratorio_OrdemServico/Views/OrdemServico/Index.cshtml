@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Laboratorio.Models.OrdemServico>
+
+@{
+    ViewBag.Title = "Ordem de Serviço";
+}
+
+<h2>Ordem de Serviço</h2>
+
+<p>
+    @Html.ActionLink("Cadastrar", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            <p>Paciente</p>
+        </th>
+        <th>
+            <p>Médico</p>
+        </th>
+        <th>
+            <p>Posto de Coleta</p>
+        </th>
+        <th>
+            <p>Exames</p>
+        </th>
+        <th></th>
+    </tr>
+
+    @if (Model != null)
+    {
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Paciente.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Medico.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PostoColeta.Descricao)
+                </td>
+                <td>
+                    @foreach (var exame in item.OrdemServicoExame)
+                    {
+                        @Html.DisplayFor(modelItem2 => exame.Exame.Descricao)
+                        <br />
+                    }
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.OrdemServicoId }) |
+                    @Html.ActionLink("Detalhes", "Details", new { id = item.OrdemServicoId }) |
+                    @Html.ActionLink("Deletar", "Delete", new { id = item.OrdemServicoId })
+                </td>
+            </tr>
+        }
+    }
+</table>

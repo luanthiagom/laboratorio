@@ -1,0 +1,23 @@
+﻿insert into Medico values(1, 'Mary S. Robertson', 'Acupuntura')
+insert into Medico values(2, 'Rafael D. Gary', 'Cancerologia')
+insert into Medico values(3, 'Donald B. Jackson', 'Cirurgia de Cabeça e Pescoço')
+insert into Medico values(4, 'Alice S. Becker', 'Patologia Clínica/Medicina Laboratorial')
+insert into Medico values(5, 'Joy E. Elliot', 'Nutrição Parenteral e Enteral Pediátrica')
+
+insert into PostoColeta values(1, 'Posto Coleta 1', 'Rua Horácio Soares de Oliveira, 156')
+insert into PostoColeta values(2, 'Posto Coleta 2', 'Praça dos Piás, 1782')
+insert into PostoColeta values(3, 'Posto Coleta 3', 'Rua Fornaciari, 904')
+insert into PostoColeta values(4, 'Posto Coleta 4', 'Rua José Dias dos Santos, 1614')
+insert into PostoColeta values(5, 'Posto Coleta 5', 'Rua Antônio Januzzi, 292')
+
+insert into Exame values(1, 'Cintilografia', '215.00')
+insert into Exame values(2, 'Audiometria', '17.00')
+insert into Exame values(3, 'Eletrocardiograma - ECG', '35.00')
+insert into Exame values(4, 'Endoscopia', '350.00')
+insert into Exame values(5, 'Laboratoriais (sangue, urina)', '12.00')
+
+insert into Paciente values(1, 'James E. McGuire', '11/12/1992', 'Masculino', 'Vila Yucatan, 1906')
+insert into Paciente values(2, 'John T. Kane', '09/02/1995', 'Masculino', 'Rua Lagoa dos Patos, 949')
+insert into Paciente values(3, 'Louise C. James', '04/06/1997', 'Feminino', 'Rua Cinquenta e Cinco, 1206')
+insert into Paciente values(4, 'Kelli A. Case', '02/07/1991', 'Feminino', 'Rua Otávio Faria, 1449')
+insert into Paciente values(5, 'Melissa T. Lane', '01/03/1999', 'Feminino', 'Rua Nicola Conforto, 1181')

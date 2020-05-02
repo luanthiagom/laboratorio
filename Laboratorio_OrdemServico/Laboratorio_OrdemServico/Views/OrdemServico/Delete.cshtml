@@ -1,0 +1,83 @@
+﻿@model Laboratorio.Models.OrdemServico
+
+@{
+    ViewBag.Title = "Deletar";
+}
+
+<h2>Deletar</h2>
+<h3>Tem certeza que deseja deletar?</h3>
+
+<div>
+    <h4>Ordem de Serviço</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            <p>Data</p>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Data)
+        </dd>
+
+        <dt>
+            <p>Paciente</p>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Paciente.Nome)<br />
+            @Html.DisplayFor(model => model.Paciente.DataNascimento)<br />
+            @Html.DisplayFor(model => model.Paciente.Sexo)<br />
+            @Html.DisplayFor(model => model.Paciente.Endereco)<br />
+
+        </dd>
+
+        <dt>
+            <p>Médico</p>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Medico.Nome)<br />
+            @Html.DisplayFor(model => model.Medico.Especialidade)<br />
+        </dd>
+
+        <dt>
+            <p>Posto de Coleta</p>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PostoColeta.Descricao)<br />
+            @Html.DisplayFor(model => model.PostoColeta.Endereco)<br />
+        </dd>
+
+        <dt>
+            <p>Convênio</p>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Convenio)
+        </dd>
+
+        <dt>
+            <p>Exames</p>
+        </dt>
+
+        <dd>
+            @foreach (var item in Model.OrdemServicoExame)
+            {
+                @Html.DisplayFor(model => item.Exame.Descricao)<br />
+                @Html.DisplayFor(model => item.Preco)<br />
+            }
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <input type="hidden" name="OrdemServicoId" value="@Model.OrdemServicoId" />
+        <div class="form-actions no-color">
+            <input type="submit" value="Deletar" class="btn btn-default" /> |
+            @Html.ActionLink("Voltar", "Index")
+        </div>
+    }
+</div>

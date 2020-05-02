@@ -1,0 +1,76 @@
+﻿@model Laboratorio.Models.OrdemServico
+
+@{
+    ViewBag.Title = "Detalhes";
+}
+
+<h2>Detalhes</h2>
+
+<div>
+    <h4>Ordem de Serviço</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            <p>Data</p>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Data)
+        </dd>
+
+        <dt>
+            <p>Paciente</p>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Paciente.Nome)<br />
+            @Html.DisplayFor(model => model.Paciente.DataNascimento)<br />
+            @Html.DisplayFor(model => model.Paciente.Sexo)<br />
+            @Html.DisplayFor(model => model.Paciente.Endereco)<br />
+
+        </dd>
+
+        <dt>
+            <p>Médico</p>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Medico.Nome)<br />
+            @Html.DisplayFor(model => model.Medico.Especialidade)<br />
+        </dd>
+
+        <dt>
+            <p>Posto de Coleta</p>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PostoColeta.Descricao)<br />
+            @Html.DisplayFor(model => model.PostoColeta.Endereco)<br />
+        </dd>
+
+        <dt>
+            <p>Convênio</p>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Convenio)
+        </dd>
+
+        <dt>
+            <p>Exames</p>
+        </dt>
+
+        <dd>
+            @foreach (var item in Model.OrdemServicoExame)
+            {
+                @Html.DisplayFor(model => item.Exame.Descricao)<br /> 
+                @Html.DisplayFor(model => item.Preco)<br />
+            }
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.OrdemServicoId }) |
+    @Html.ActionLink("Voltar", "Index")
+</p>

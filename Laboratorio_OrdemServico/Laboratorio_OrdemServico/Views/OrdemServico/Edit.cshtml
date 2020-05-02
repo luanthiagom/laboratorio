@@ -1,0 +1,108 @@
+﻿@model Laboratorio.Models.OrdemServico
+
+@{
+    ViewBag.Title = "Editar Ordem";
+}
+
+<h2>Editar Ordem</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <h4>Ordem de Serviço</h4>
+        <hr />
+        <input type="hidden" id="OrdemServicoId" name="OrdemServicoId" value="@Model.OrdemServicoId" />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <p class="control-label col-md-2">Data</p>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Data, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            </div>
+        </div>
+        <div class="form-group">
+            <p class="control-label col-md-2">Paciente</p>
+            <div class="col-md-10">
+                @Html.DropDownList("PacienteId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.PacienteId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <p class="control-label col-md-2">Posto de Coleta</p>
+            <div class="col-md-10">
+                @Html.DropDownList("PostoColetaId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.PostoColetaId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <p class="control-label col-md-2">Médico</p>
+            <div class="col-md-10">
+                @Html.DropDownList("MedicoId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.MedicoId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <p class="control-label col-md-2">Convênio</p>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Convenio, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                @Html.ValidationMessageFor(model => model.Convenio, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <p class="control-label col-md-2">Exame</p>
+            <div class="col-md-10">
+                @Html.DropDownList("ExameId", null, htmlAttributes: new { @class = "form-control" })
+                <input type="button" class="btn btn-defaultt" value="Adicionar Exame" id="btnAddExame" style="margin-top: 2px;" />
+            </div>
+            <p class="control-label col-md-2">Exames selecionados</p>
+            <div id="ExamesAdicionados" class="col-md-10">
+                <table id="tblExamesAdicionados" class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Exame</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            var j = 0;
+                            foreach (var item in Model.OrdemServicoExame)
+                            {
+                                <tr id='line-@j'>
+                                    <td>
+                                        @item.Exame.Descricao
+                                        <input type='hidden' name='OrdemServicoExame[@j].ExameId' value='@item.ExameId' />
+                                        <input type='hidden' name='OrdemServicoExame[@j].OrdemServicoId' value='@item.OrdemServicoId' />
+                                        <input type='hidden' name='OrdemServicoExame[@j].OrdemServicoExameId' value='@item.OrdemServicoExameId' />
+                                    </td>
+                                    <td><i class='fas fa-trash-alt' data-target='#line-@j'></i></td>
+                                </tr>
+                                j++;
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Salvar" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Voltar", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Assets/JS/OrdemServico.js")
+}
+
+@*<script src="~/Assets/JS/OrdemServico.js?@DateTime.Now.Ticks"></script>*@
